@@ -41,7 +41,7 @@ export class ClaudeService {
   private readonly model: string;
 
   constructor(config: ConfigService) {
-    const apiKey = config.getOrThrow<string>('ANTHROPIC_API_KEY');
+    const apiKey = config.getOrThrow<string>('process.env.ANTHROPIC_API_KEY');
     this.client = new Anthropic({ apiKey });
     this.model = config.get<string>('ANTHROPIC_MODEL', 'claude-sonnet-4-6');
   }

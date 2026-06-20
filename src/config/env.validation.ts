@@ -28,7 +28,7 @@ class EnvironmentVariables {
   @IsString()
   @MinLength(1)
   OPENAI_API_KEY!: string;
-
+  
   @IsOptional()
   @IsString()
   OPENAI_EMBEDDING_MODEL?: string;
