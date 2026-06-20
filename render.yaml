@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: courserag-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: courserag-db
+          property: connectionString
+      - key: DATABASE_SSL
+        value: "true"
+      - key: DATABASE_SYNC
+        value: "true"   # set to "false" after first deploy to disable auto-sync
+      - key: OPENAI_API_KEY
+        sync: false      # set manually in Render dashboard
+      - key: ANTHROPIC_API_KEY
+        sync: false      # set manually in Render dashboard
+      - key: CORS_ORIGIN
+        sync: false      # set to your frontend URL after it is deployed
+
+databases:
+  - name: courserag-db
+    plan: free
+    databaseName: courserag
+    user: courserag

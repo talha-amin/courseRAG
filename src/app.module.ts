@@ -24,7 +24,7 @@ import { HealthModule } from './health/health.module';
         url: config.getOrThrow<string>('DATABASE_URL'),
         ssl: config.get<string>('DATABASE_SSL') === 'true' ? { rejectUnauthorized: false } : false,
         entities: [Document, Chunk, Question],
-        synchronize: config.get<string>('NODE_ENV') !== 'production',
+        synchronize: config.get<string>('DATABASE_SYNC') === 'true' || config.get<string>('NODE_ENV') !== 'production',
         autoLoadEntities: true,
       }),
     }),

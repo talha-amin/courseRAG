@@ -25,6 +25,14 @@ class EnvironmentVariables {
   @IsString()
   DATABASE_SSL?: string;
 
+  @IsOptional()
+  @IsString()
+  DATABASE_SYNC?: string;
+
+  @IsOptional()
+  @IsString()
+  CORS_ORIGIN?: string;
+
   @IsString()
   @MinLength(1)
   OPENAI_API_KEY!: string;
